@@ -321,8 +321,8 @@ function showIntro() {
     <div class="intro">
         <h2>📖 Giới thiệu</h2>
         <p>Đây là website lưu trữ tài liệu học tập cho học sinh khối 11.
-        Website không phải do Minh Lê tự code ra mà có sự hỗ trợ của AI.
-        Xin vui lòng không tranh luận về chất lượng ưebsite. Em cảm ơn!</p>
+        Website không phải do "M" tự code ra mà có sự hỗ trợ của AI.
+        Xin vui lòng không tranh luận về chất lượng ưebsite. Em cảm ơn ạaa!</p>
     </div>`;
     document.getElementById("backBtn").style.display = "block";
 }
@@ -371,7 +371,7 @@ function send() {
     let foundClass = Object.keys(data).find(c => t.includes(c.toLowerCase()));
     let foundGroup = foundClass && Object.keys(data[foundClass]).find(g => t.includes(normalize(g)));
 
-    let reply = "🤖 Thử hỏi: 11A1 nhóm 1";
+    let reply = "🤖 Thử hỏi: 11A{1;2;3;6} nhóm {1;2;3;4}";
 
     if (foundClass && foundGroup) {
         let links = data[foundClass][foundGroup];
