@@ -321,6 +321,22 @@
             from { width: 0px; height: 0px; opacity: 0.5; }
             to { width: 100px; height: 100px; opacity: 0; }
         }
+        .qr-box{
+        position:fixed;
+        bottom:20px;
+        left:20px;
+        z-index:1000;
+        }
+
+        .qr-box img{
+        width:90px;   /* đủ quét */
+        height:90px;
+        border-radius:10px;
+        border:2px solid cyan;
+        box-shadow:0 0 10px cyan;
+        background:white;
+        padding:5px;
+        }
     </style>
 </head>
 
@@ -345,6 +361,9 @@
 
  <p style="color:cyan;">⚡ Trạng thái: Online</p>
 </div>
+<div class="qr-box">
+  <img src="qr code.png" alt="QR Code">
+</div>    
 <div id="loading">
     <div style="text-align:center">
         <img src="9ae3a6a7a8ce299070df.jpg" class="loading-logo" alt="Logo">
