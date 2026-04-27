@@ -527,11 +527,12 @@
     <h2>🔒 Nhập mật khẩu</h2>
     <input type="password" id="passInput" placeholder="Mật khẩu...">
     <button onclick="checkPass()">Vào</button>
-    <p id="passError"></p>
+    <button onclick="showHint()" style="margin-top:10px;">💡 Gợi ý</button>
+    <p id="passHint" style="color:cyan; font-size:13px;"></p>
+    <p id="passError"></p> 
   </div>
 </div>
-<button onclick="showHint()" style="margin-left:5px;">💡 Gợi ý</button>
-<p id="passHint" style="color:cyan; font-size:13px;"></p>
+
 <!-- 🎁 HỘP QUÀ -->
 <div class="gift-box" onclick="openGift()">🎁</div>
 <!-- 📦 POPUP CÂU HỎI -->
