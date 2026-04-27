@@ -904,7 +904,19 @@ function closeLetter(){
 }
 function closeGift(){
  document.getElementById("giftPopup").style.display="none";
-}    
+}
+const PASSWORD = "01001101011010010110111001101000"; // 👈 đổi mật khẩu tại đây
+
+function checkPass(){
+ let input = document.getElementById("passInput").value;
+
+ if(input === PASSWORD){
+   document.getElementById("lockScreen").style.display = "none";
+   localStorage.setItem("unlocked","yes");
+ }else{
+   document.getElementById("passError").innerText = "❌ Sai mật khẩu!";
+ }
+}
 </script>
 </body>
 </html>
