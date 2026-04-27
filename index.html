@@ -530,6 +530,8 @@
     <p id="passError"></p>
   </div>
 </div>
+<button onclick="showHint()" style="margin-left:5px;">💡 Gợi ý</button>
+<p id="passHint" style="color:cyan; font-size:13px;"></p>
 <!-- 🎁 HỘP QUÀ -->
 <div class="gift-box" onclick="openGift()">🎁</div>
 <!-- 📦 POPUP CÂU HỎI -->
@@ -917,6 +919,9 @@ function checkPass(){
    document.getElementById("passError").innerText = "❌ Sai mật khẩu!";
  }
 }
+function showHint(){
+  document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
+}    
 </script>
 </body>
 </html>
