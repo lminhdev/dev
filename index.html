@@ -947,39 +947,31 @@ function checkPass(){
 function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
+/* ===== CHECK IP ===== */
 async function getIP() {
     const ipElement = document.getElementById("ip");
-    // Danh sách các API dự phòng để tránh lỗi giới hạn (Rate Limit)
-    const apis = [
-        "https://ipwho.is/",
-        "https://ipapi.co/json/",
-        "https://api.ipify.org?format=json"
-    ];
 
-    for (let url of apis) {
-        try {
-            const res = await fetch(url);
-            if (!res.ok) continue; // Thử API tiếp theo nếu API này lỗi
-            const data = await res.json();
-            
-            // Xử lý dữ liệu tùy theo cấu trúc của từng API
-            const ip = data.ip || data.query || "Không rõ";
-            const city = data.city || data.city_name || "N/A";
-            const country = data.country || data.country_name || "N/A";
+    try {
+        // Lấy IP + vị trí cùng lúc
+        const res = await fetch("https://ipwho.is/");
+        const data = await res.json();
 
-            if (city !== "N/A") {
-                ipElement.innerText = `${ip} | ${city}, ${country}`;
-                return; // Thoát hàm nếu lấy dữ liệu thành công
-            } else {
-                ipElement.innerText = `${ip} (Dữ liệu vị trí bị ẩn)`;
-                return;
-            }
-        } catch (e) {
-            console.error("Lỗi API: " + url);
+        if (!data.success) {
+            ipElement.innerText = "Không thể lấy IP";
+            return;
         }
+
+        ipElement.innerText =
+            `${data.ip} | ${data.city}, ${data.country}`;
+
+    } catch (err) {
+        ipElement.innerText = "Lỗi kết nối";
+        console.error(err);
     }
-    ipElement.innerText = "Lỗi kết nối dữ liệu";
 }
+
+/* chạy */
+getIP();
 </script>
 </body>
 </html>
