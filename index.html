@@ -948,57 +948,19 @@ function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
 /* ===== CHECK IP ===== */
-async function getIP() {
+fetch("https://ipapi.co/json/")
+.then(res => res.json())
+.then(data => {
 
-    const ipElement = document.getElementById("ip");
+ document.getElementById("ip").innerText =
+ `${data.ip}`;
 
-    // Danh sách API dự phòng
-    const apis = [
-        "https://ipwho.is/",
-        "https://ipapi.co/json/",
-        "https://api.ip.sb/geoip"
-    ];
+})
+.catch(()=>{
 
-    for (const api of apis) {
+ document.getElementById("ip").innerText = "ERROR";
 
-        try {
-
-            const res = await fetch(api);
-
-            if (!res.ok) continue;
-
-            const data = await res.json();
-
-            // xử lý nhiều kiểu dữ liệu khác nhau
-            const ip =
-                data.ip ||
-                data.query ||
-                "Unknown";
-
-            const city =
-                data.city ||
-                data.region ||
-                "Unknown";
-
-            const country =
-                data.country ||
-                data.country_name ||
-                "Unknown";
-
-            ipElement.innerText =
-                `${ip} | ${city}, ${country}`;
-
-            return;
-
-        } catch (err) {
-            console.log("API lỗi:", api);
-        }
-    }
-
-    ipElement.innerText = "Không thể lấy IP";
-}
-
-getIP();
+});
 </script>
 </body>
 </html>
