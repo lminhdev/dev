@@ -948,19 +948,19 @@ function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
 /* ===== CHECK IP ===== */
-fetch("https://ipapi.co/json/")
+fetch("https://ipwho.is/")
 .then(res => res.json())
 .then(data => {
 
  document.getElementById("ip").innerText =
- `${data.ip} | ${data.city}, ${data.country_name}`;
+ `${data.ip} | ${data.city}, ${data.country}`;
 
 })
 .catch(()=>{
 
  document.getElementById("ip").innerText = "ERROR";
 
-});    
+});
 </script>
 </body>
 </html>
