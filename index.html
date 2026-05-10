@@ -620,7 +620,7 @@
 <div class="qr-box">
   <img src="qr code.png" alt="QR Code">
 </div>
-<!-- PET -->
+
 <img id="pet" src="meomeo.gif">
 <div id="loading">
     <div style="text-align:center">
@@ -638,7 +638,7 @@
 <div class="header">
     <img src="9ae3a6a7a8ce299070df.jpg" class="logo" alt="Logo">
     <h1>📚 TÀI LIỆU MÔN GIÁO DỤC ĐỊA PHƯƠNG SÓC TRĂNG LỚP 11 THPT ĐẠI NGÃI</h1>
-    <p>Kho lưu trữ tài liệu lớp 11 năm học 2025-2026</p>
+    <p>KHO LƯU TRỮ TÀI LIỆU HỌC TẬP LỚP 11 NĂM HỌC 2025-2026</p>
 </div>
 
 <div id="main" class="container"></div>
@@ -654,14 +654,14 @@
 
 <div class="credit" id="credit"></div>
 
-<!-- PERFORMANCE PANEL -->
+
 <div id="perf">
   FPS: <span id="fps">0</span><br>
   Ping: <span id="ping">0</span> ms
 </div>
 
 <script>
-/* DỮ LIỆU */
+
 const data = {
     "11A1": {
         "Nhóm 1": [
@@ -681,7 +681,7 @@ let currentState = "home";
 let currentClass = "";
 const main = document.getElementById("main");
 
-/* NAVIGATION */
+
 function showClasses() {
     currentState = "home";
     main.innerHTML = "";
@@ -697,22 +697,21 @@ function showIntro() {
     main.innerHTML = `
     <div class="intro">
         <h2>📖 Giới thiệu</h2>
-        <p>Đây là website lưu trữ tài liệu học tập cho học sinh khối 11.
-        LƯU Ý: Website không phải do "M" tự code ra mà có sự hỗ trợ của AI.
-        Xin vui lòng không tranh luận về chất lượng ưebsite. Em cảm ơn ạaa!!!</p>
+        <p>Đây là trang web lưu trữ tài liệu học tập môn "Giáo Dục Địa Phương Sóc Trăng" cho học sinh khối 11.
+           Trang web giúp tổng hợp và tìm kiếm tài liệu nhanh chóng.</p>
     <h3>💻 Cấu hình đề xuất</h3>
 
     <p><b>🟢 Tối thiểu:</b><br>
     CPU: Dual-core (Pentium, Celeron)<br>
     RAM: 2GB<br>
     Trình duyệt: Chrome / Edge bản mới<br>
-    → Vẫn chạy được nhưng có thể hơi giật
+    → Vẫn chạy được nhưng có thể hơi giật.
     </p>
 
     <p><b>🔵 Khuyến nghị:</b><br>
     CPU: i3 / Ryzen 3 trở lên<br>
     RAM: 4GB trở lên<br>
-    → Chạy mượt toàn bộ hiệu ứng
+    → Chạy mượt toàn bộ hiệu ứng.
     </p>
     </div>`;
     document.getElementById("backBtn").style.display = "block";
@@ -746,7 +745,7 @@ function back() {
     else showClasses();
 }
 
-/* AI */
+
 function normalize(t) {
     return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
@@ -777,12 +776,12 @@ function send() {
     input.value = "";
 }
 
-/* THEME */
+
 function toggleTheme() {
     const isLight = document.body.classList.toggle("light");
     document.getElementById("themeBtn").innerText = isLight ? "☀️ Chế độ sáng" : "🌙 Chế độ tối";
 }
-/* MODE */
+
 function setMode(mode){
  document.body.classList.remove("quality","balanced","performance");
  document.body.classList.add(mode);
@@ -790,13 +789,13 @@ function setMode(mode){
 }
 let saved=localStorage.getItem("mode")||"balanced";
 setMode(saved);
-/* PET FOLLOW */
+
 const pet = document.getElementById("pet");
 document.addEventListener("mousemove", e=>{
  pet.style.left = (e.clientX + 15) + "px";
  pet.style.top = (e.clientY + 15) + "px";
 });
-/* EFFECT */
+
 
 document.addEventListener("click", e => {
     let r = document.createElement("div");
@@ -806,8 +805,8 @@ document.addEventListener("click", e => {
     setTimeout(() => r.remove(), 600);
 });
 
-/* HACKER TEXT */
-const creditText = "🤖 TRANG NÀY ĐƯỢC TẠO BỞI AI NHENNN";
+
+const creditText = "🤖 >>>>>>";
 let charIndex = 0;
 function typeEffect() {
     if (charIndex < creditText.length) {
@@ -817,7 +816,7 @@ function typeEffect() {
     } else { document.getElementById("credit").classList.add("glitch"); }
 }
 
-/* LOADING */
+
 let progress = 0;
 let loadInterval = setInterval(() => {
     progress += Math.random() * 20;
@@ -849,7 +848,7 @@ document.addEventListener("click",function(e){
   box.style.display="none";
  }
 });
-/* ===== FPS ===== */
+
 let lastFrame = performance.now();
 let frames = 0;
 
@@ -867,7 +866,7 @@ function measureFPS(){
 }
 measureFPS();
 
-/* ===== PING (response time) ===== */
+
 function measurePing(){
   let start = performance.now();
 
@@ -883,13 +882,13 @@ function measurePing(){
 
 setInterval(measurePing, 3000);
 measurePing();
-/* ===== NHẠC ===== */
+
 let music=document.getElementById("bgMusic");
 let isPlaying=false;
 
 music.volume=0.3;
 
-/* load trạng thái */
+
 if(localStorage.getItem("music")==="on"){
 music.play();
 isPlaying=true;
@@ -912,7 +911,7 @@ function openGift(){
  document.getElementById("giftPopup").style.display="flex";
 }
 
-/* 👉 ĐÁP ÁN ĐÚNG */
+
 const correctAnswer = ["0"];
 
 function checkAnswer(){
@@ -932,7 +931,7 @@ function closeLetter(){
 function closeGift(){
  document.getElementById("giftPopup").style.display="none";
 }
-const PASSWORD = "01001101011010010110111001101000"; // 👈 đổi mật khẩu tại đây
+const PASSWORD = "01001101011010010110111001101000";
 
 function checkPass(){
  let input = document.getElementById("passInput").value;
@@ -947,7 +946,7 @@ function checkPass(){
 function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
-/* ===== CHECK IP ===== */
+
 async function getIP() {
     const ipText = document.getElementById("ip");
 
