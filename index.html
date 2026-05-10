@@ -538,11 +538,41 @@
 
         box-shadow:0 0 10px rgba(0,255,255,0.3);
         }
+        .dynamic-island{
+        position:fixed;
+        top:10px;
+        left:50%;
+        transform:translateX(-50%) translateY(-100px);
+
+        background:rgba(0,0,0,0.85);
+        color:white;
+
+        padding:12px 25px;
+
+        border-radius:30px;
+
+        border:1px solid cyan;
+
+        box-shadow:0 0 15px cyan;
+
+        z-index:99999;
+
+        opacity:0;
+
+        transition:0.4s;
+        }
+
+        .dynamic-island.show{
+        opacity:1;
+        transform:translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 
 <body>
-
+<div class="dynamic-island" id="dynamicIsland">
+ 🚀 Thông báo
+</div>
 <div id="ipBox">
   🌐 IP: <span id="ip">Đang kiểm tra...</span>
 </div>
@@ -939,6 +969,7 @@ function checkPass(){
  if(input === PASSWORD){
    document.getElementById("lockScreen").style.display = "none";
    localStorage.setItem("unlocked","yes");
+   showIsland("✅ Đăng nhập thành công");
  }else{
    document.getElementById("passError").innerText = "❌ Sai mật khẩu!";
  }
@@ -983,6 +1014,19 @@ async function getIP() {
 }
 
 getIP();
+function showIsland(text){
+
+ const island = document.getElementById("dynamicIsland");
+
+ island.innerText = text;
+
+ island.classList.add("show");
+
+ setTimeout(()=>{
+   island.classList.remove("show");
+ },3000);
+
+}
 </script>
 </body>
 </html>
