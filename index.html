@@ -948,19 +948,42 @@ function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
 /* ===== CHECK IP ===== */
-fetch("https://ipapi.co/json/")
-.then(res => res.json())
-.then(data => {
+async function getIP() {
+    const ipText = document.getElementById("ip");
 
- document.getElementById("ip").innerText =
- `${data.ip}`;
+    const apis = [
+        "https://api.ipify.org?format=json",
+        "https://api64.ipify.org?format=json",
+        "https://ipwho.is/"
+    ];
 
-})
-.catch(()=>{
+    for (const api of apis) {
+        try {
+            const res = await fetch(api, {
+                cache: "no-store"
+            });
 
- document.getElementById("ip").innerText = "ERROR";
+            if (!res.ok) continue;
 
-});
+            const data = await res.json();
+
+            const ip =
+                data.ip ||
+                data.query ||
+                "UNKNOWN";
+
+            ipText.innerText = ip;
+            return;
+
+        } catch (err) {
+            console.log("API lỗi:", api);
+        }
+    }
+
+    ipText.innerText = "KHÔNG THỂ LẤY IP";
+}
+
+getIP();
 </script>
 </body>
 </html>
