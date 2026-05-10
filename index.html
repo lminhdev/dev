@@ -950,22 +950,28 @@ function showHint(){
 /* ===== CHECK IP ===== */
 async function getIP(){
 
- try{
+  try{
 
-   let res = await fetch("https://api.ipify.org?format=json");
-   let ipData = await res.json();
+    // lấy IP
+    let res = await fetch("https://api.ipify.org?format=json");
+    let ipData = await res.json();
 
-   let res2 = await fetch("https://ipwho.is/");
-   let locData = await res2.json();
+    // lấy vị trí
+    let res2 = await fetch(`https://ipwho.is/${ipData.ip}`);
+    let locData = await res2.json();
 
-   document.getElementById("ip").innerText =
-   `${ipData.ip} | ${locData.city}, ${locData.country}`;
+    // fallback nếu thiếu dữ liệu
+    let city = locData.city || "Unknown";
+    let country = locData.country || "Unknown";
 
- }catch{
+    document.getElementById("ip").innerText =
+      `${ipData.ip} | ${city}, ${country}`;
 
-   document.getElementById("ip").innerText = "ERROR";
+  }catch(err){
 
- }
+    document.getElementById("ip").innerText = "ERROR";
+
+  }
 
 }
 
