@@ -518,10 +518,34 @@
         color:cyan;
         cursor:pointer;
         }
+        #ipBox{
+        position:fixed;
+        top:80px;
+        left:10px;
+        padding:10px 15px;
+
+        background:rgba(0,0,0,0.6);
+
+        border:1px solid cyan;
+        border-radius:12px;
+
+        color:cyan;
+        font-size:13px;
+
+        z-index:1000;
+
+        backdrop-filter:blur(5px);
+
+        box-shadow:0 0 10px rgba(0,255,255,0.3);
+        }
     </style>
 </head>
 
 <body>
+<!-- IP CHECK -->
+<div id="ipBox">
+  🌐 IP: <span id="ip">Đang kiểm tra...</span>
+</div>
 <div id="lockScreen">
   <div class="lock-box">
     <h2>🔒 Nhập mật khẩu</h2>
@@ -922,7 +946,21 @@ function checkPass(){
 }
 function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
-}    
+}
+/* ===== CHECK IP ===== */
+fetch("https://ipapi.co/json/")
+.then(res => res.json())
+.then(data => {
+
+ document.getElementById("ip").innerText =
+ `${data.ip} | ${data.city}, ${data.country_name}`;
+
+})
+.catch(()=>{
+
+ document.getElementById("ip").innerText = "ERROR";
+
+});    
 </script>
 </body>
 </html>
