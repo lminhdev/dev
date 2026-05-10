@@ -949,21 +949,53 @@ function showHint(){
 }
 /* ===== CHECK IP ===== */
 async function getIP() {
+
     const ipElement = document.getElementById("ip");
 
-    try {
-        const res = await fetch("https://ipapi.co/json/");
-        const data = await res.json();
+    // Danh sách API dự phòng
+    const apis = [
+        "https://ipwho.is/",
+        "https://ipapi.co/json/",
+        "https://api.ip.sb/geoip"
+    ];
 
-        ipElement.innerText =
-        `${data.ip} | ${data.city}, ${data.country_name}`;
+    for (const api of apis) {
 
-    } catch (err) {
+        try {
 
-        ipElement.innerText = "Không thể lấy IP";
+            const res = await fetch(api);
 
-        console.error(err);
+            if (!res.ok) continue;
+
+            const data = await res.json();
+
+            // xử lý nhiều kiểu dữ liệu khác nhau
+            const ip =
+                data.ip ||
+                data.query ||
+                "Unknown";
+
+            const city =
+                data.city ||
+                data.region ||
+                "Unknown";
+
+            const country =
+                data.country ||
+                data.country_name ||
+                "Unknown";
+
+            ipElement.innerText =
+                `${ip} | ${city}, ${country}`;
+
+            return;
+
+        } catch (err) {
+            console.log("API lỗi:", api);
+        }
     }
+
+    ipElement.innerText = "Không thể lấy IP";
 }
 
 getIP();
