@@ -947,29 +947,30 @@ function checkPass(){
 function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
-/* ===== CHECK IP (RELIABLE VERSION) ===== */
+/* ===== CHECK IP (FIXED VERSION) ===== */
 async function getIP() {
   try {
-    // Sử dụng ipwho.is vì nó nhanh, miễn phí và trả về cả IP lẫn vị trí trong 1 lần gọi
-    const response = await fetch("https://https://ipwho.is/");
+    // Sửa lỗi: Chỉ sử dụng một https://
+    const response = await fetch("https://ipwho.is/");
+    
+    // Kiểm tra nếu phản hồi từ server không ổn định
+    if (!response.ok) throw new Error("Network response was not ok");
+
     const data = await response.json();
 
     if (data.success) {
-      // data.city và data.country là các trường chuẩn của ipwho.is
       document.getElementById("ip").innerText = 
         `${data.ip} | ${data.city}, ${data.country}`;
     } else {
-      // Trường hợp API trả về lỗi nhưng vẫn kết nối được
       document.getElementById("ip").innerText = "Không thể xác định vị trí";
     }
   } catch (err) {
-    // Trường hợp mất kết nối mạng hoặc API bị chặn
     document.getElementById("ip").innerText = "Lỗi kết nối dữ liệu";
     console.error("IP Check Error:", err);
   }
 }
 
-// Gọi hàm để thực thi
+// Gọi lại hàm
 getIP();
 </script>
 </body>
