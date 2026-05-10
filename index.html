@@ -952,25 +952,20 @@ async function getIP() {
     const ipElement = document.getElementById("ip");
 
     try {
-        // Lấy IP + vị trí cùng lúc
-        const res = await fetch("https://ipwho.is/");
+        const res = await fetch("https://ipapi.co/json/");
         const data = await res.json();
 
-        if (!data.success) {
-            ipElement.innerText = "Không thể lấy IP";
-            return;
-        }
-
         ipElement.innerText =
-            `${data.ip} | ${data.city}, ${data.country}`;
+        `${data.ip} | ${data.city}, ${data.country_name}`;
 
     } catch (err) {
-        ipElement.innerText = "Lỗi kết nối";
+
+        ipElement.innerText = "Không thể lấy IP";
+
         console.error(err);
     }
 }
 
-/* chạy */
 getIP();
 </script>
 </body>
