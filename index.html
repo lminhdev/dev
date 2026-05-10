@@ -953,23 +953,21 @@ async function getIP(){
   try{
 
     // lấy IP
-    let res = await fetch("https://api.ipify.org?format=json");
-    let ipData = await res.json();
+    let ipRes = await fetch("https://api.ipify.org?format=json");
+    let ipData = await ipRes.json();
 
-    // lấy vị trí
-    let res2 = await fetch(`https://ipwho.is/${ipData.ip}`);
-    let locData = await res2.json();
-
-    // fallback nếu thiếu dữ liệu
-    let city = locData.city || "Unknown";
-    let country = locData.country || "Unknown";
+    // lấy location theo IP
+    let locRes = await fetch(`https://ipapi.co/${ipData.ip}/json/`);
+    let locData = await locRes.json();
 
     document.getElementById("ip").innerText =
-      `${ipData.ip} | ${city}, ${country}`;
+    `${ipData.ip} | ${locData.city}, ${locData.country_name}`;
 
   }catch(err){
 
-    document.getElementById("ip").innerText = "ERROR";
+    document.getElementById("ip").innerText = "Không thể lấy IP";
+
+    console.log(err);
 
   }
 
