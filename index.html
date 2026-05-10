@@ -948,14 +948,22 @@ function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
 async function getIP() {
+  const ipElement = document.getElementById("ip");
   try {
     const res = await fetch("https://ipwho.is/");
     const data = await res.json();
+    
     if (data.success) {
-      document.getElementById("ip").innerText = `${data.ip} | ${data.city}, ${data.country}`;
+      // Sử dụng toán tử || để tránh lỗi undefined
+      const city = data.city || "Không rõ tỉnh";
+      const country = data.country || "Không rõ quốc gia";
+      ipElement.innerText = `${data.ip} | ${city}, ${country}`;
+    } else {
+      ipElement.innerText = "Dữ liệu IP bị hạn chế";
     }
   } catch (e) {
-    document.getElementById("ip").innerText = "Không thể lấy IP";
+    ipElement.innerText = "Lỗi kết nối API";
+    console.error("IP Error:", e);
   }
 }
 getIP();
