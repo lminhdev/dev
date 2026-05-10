@@ -948,19 +948,28 @@ function showHint(){
   document.getElementById("passHint").innerText = "🔑 01001101011010010110111001101000";
 }
 /* ===== CHECK IP ===== */
-fetch("https://ipwho.is/")
-.then(res => res.json())
-.then(data => {
+async function getIP(){
 
- document.getElementById("ip").innerText =
- `${data.ip} | ${data.city}, ${data.country}`;
+ try{
 
-})
-.catch(()=>{
+   let res = await fetch("https://api.ipify.org?format=json");
+   let ipData = await res.json();
 
- document.getElementById("ip").innerText = "ERROR";
+   let res2 = await fetch("https://ipwho.is/");
+   let locData = await res2.json();
 
-});
+   document.getElementById("ip").innerText =
+   `${ipData.ip} | ${locData.city}, ${locData.country}`;
+
+ }catch{
+
+   document.getElementById("ip").innerText = "ERROR";
+
+ }
+
+}
+
+getIP();
 </script>
 </body>
 </html>
