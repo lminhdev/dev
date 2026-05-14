@@ -1064,53 +1064,26 @@ function showIsland(text){
  },3000);
 
 }
-function updateSystemStats(){
+
+function updateUsage(){
 
   
-  let cpu = Math.floor(Math.random()*12)+3;
+  let cpu = Math.floor(Math.random() * 4) + 3; 
 
   
-  let gpu = Math.floor(Math.random()*18)+2;
-
-  document.getElementById("cpu").innerText = cpu;
-  document.getElementById("gpu").innerText = gpu;
+  let gpu = Math.floor(Math.random() * 2) + 6; 
 
   
+  let ram = Math.floor(Math.random() * 15) + 113; 
 
-  let ram = 40;
-
-  
-  if(performance.memory){
-
-    ram +=
-      performance.memory.usedJSHeapSize / 1048576;
-
-  }
-
-  
-  for(let img of document.images){
-
-    let w = img.naturalWidth || 1000;
-    let h = img.naturalHeight || 1000;
-
-    ram += (w*h*4)/1048576 * 0.35;
-  }
-
-  
-  ram +=
-    document.getElementsByTagName("*").length * 0.03;
-
-  
-  ram += 20;
-
-  document.getElementById("ram").innerText =
-    Math.floor(ram);
-
+  document.getElementById("cpuUsage").innerText = cpu + "%";
+  document.getElementById("gpuUsage").innerText = gpu + "%";
+  document.getElementById("ramUsage").innerText = ram + " MB";
 }
 
-setInterval(updateSystemStats,1000);
+setInterval(updateUsage, 2000);
+updateUsage();
 
-updateSystemStats();
 </script>
 </body>
 </html>
