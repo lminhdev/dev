@@ -606,6 +606,9 @@
     <input type="password" id="passInput" placeholder="Mật khẩu...">
     <button onclick="checkPass()">Vào</button>
     <button onclick="showHint()" style="margin-top:10px;">💡 Gợi ý</button>
+    <button onclick="skipPass()" style="margin-top:10px;">
+⏭ Bỏ qua
+</button>
     <p id="passHint" style="color:cyan; font-size:13px;"></p>
     <p id="passError"></p> 
   </div>
@@ -1115,7 +1118,13 @@ function updateSystemStats(){
 setInterval(updateSystemStats,1000);
 
 updateSystemStats();
+function skipPass(){
 
+ document.getElementById("lockScreen").style.display = "none";
+
+ showIsland("⏭ Đã bỏ qua đăng nhập");
+
+}
 </script>
 </body>
 </html>
