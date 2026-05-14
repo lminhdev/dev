@@ -1065,24 +1065,56 @@ function showIsland(text){
 
 }
 
-function updateUsage(){
+function updateSystemStats(){
 
   
-  let cpu = Math.floor(Math.random() * 4) + 3; 
+  let cpu = Math.floor(Math.random()*4)+3;
 
   
-  let gpu = Math.floor(Math.random() * 2) + 6; 
+  let gpu = Math.floor(Math.random()*2)+6;
+
+  document.getElementById("cpu").innerText = cpu;
+  document.getElementById("gpu").innerText = gpu;
 
   
-  let ram = Math.floor(Math.random() * 15) + 113; 
 
-  document.getElementById("cpuUsage").innerText = cpu + "%";
-  document.getElementById("gpuUsage").innerText = gpu + "%";
-  document.getElementById("ramUsage").innerText = ram + " MB";
+  let ram = 85;
+
+  
+  if(performance.memory){
+
+    ram +=
+      performance.memory.usedJSHeapSize / 1048576;
+
+  }
+
+  
+  for(let img of document.images){
+
+    let w = img.naturalWidth || 1000;
+    let h = img.naturalHeight || 1000;
+
+    ram += (w*h*4)/1048576 * 0.15;
+  }
+
+  
+  ram +=
+    document.getElementsByTagName("*").length * 0.01;
+
+  
+  ram += 10;
+
+  
+  ram = Math.max(113, Math.min(ram, 127));
+
+  document.getElementById("ram").innerText =
+    Math.floor(ram);
+
 }
 
-setInterval(updateUsage, 2000);
-updateUsage();
+setInterval(updateSystemStats,1000);
+
+updateSystemStats();
 
 </script>
 </body>
