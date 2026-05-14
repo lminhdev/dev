@@ -1067,36 +1067,50 @@ function showIsland(text){
 function updateSystemStats(){
 
   
-  let cpu = Math.floor(Math.random()*35)+10;
+  let cpu = Math.floor(Math.random()*12)+3;
 
   
-  let gpu = Math.floor(Math.random()*45)+5;
+  let gpu = Math.floor(Math.random()*18)+2;
 
   document.getElementById("cpu").innerText = cpu;
   document.getElementById("gpu").innerText = gpu;
 
   
+
+  let ram = 40;
+
+  
   if(performance.memory){
 
-    let ram =
+    ram +=
       performance.memory.usedJSHeapSize / 1048576;
 
-    document.getElementById("ram").innerText =
-      ram.toFixed(1);
-
-  }else{
-
-    let fakeRam =
-      (Math.random()*200+50).toFixed(1);
-
-    document.getElementById("ram").innerText =
-      fakeRam;
   }
+
+  
+  for(let img of document.images){
+
+    let w = img.naturalWidth || 1000;
+    let h = img.naturalHeight || 1000;
+
+    ram += (w*h*4)/1048576 * 0.35;
+  }
+
+  
+  ram +=
+    document.getElementsByTagName("*").length * 0.03;
+
+  
+  ram += 20;
+
+  document.getElementById("ram").innerText =
+    Math.floor(ram);
+
 }
 
 setInterval(updateSystemStats,1000);
 
-updateSystemStats(); 
+updateSystemStats();
 </script>
 </body>
 </html>
